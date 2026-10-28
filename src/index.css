@@ -1,0 +1,195 @@
+/* Same look as Assignment 4, with the colors moved into variables. */
+:root {
+  --color-bg: #eef3f9;
+  --color-surface: #ffffff;
+  --color-text: #1c2533;
+  --color-muted: #5d6b80;
+  --color-border: #c5d0de;
+  --color-primary: #2f6fde;
+  --color-primary-dark: #2459b8;
+  --color-error-bg: #fdecec;
+  --color-error: #9b1c1c;
+  --color-error-border: #f2b8b8;
+  --radius: 8px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+.container {
+  max-width: 650px;
+  margin: 0 auto;
+  padding: 30px 16px;
+}
+
+h1 {
+  text-align: center;
+}
+
+/* search bar */
+.search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.search label {
+  font-weight: bold;
+}
+
+.search input {
+  flex: 1;
+  min-width: 0;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.search input[aria-invalid='true'] {
+  border-color: var(--color-error);
+}
+
+.field-error {
+  margin: 8px 0 0;
+  color: var(--color-error);
+  font-size: 14px;
+}
+
+button {
+  padding: 10px 18px;
+  font-size: 16px;
+  border: none;
+  border-radius: var(--radius);
+  background-color: var(--color-primary);
+  color: white;
+  cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+  background-color: var(--color-primary-dark);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* status messages: idle, loading, error */
+.status {
+  margin-top: 20px;
+  padding: 12px;
+  border-radius: var(--radius);
+  text-align: center;
+  color: var(--color-muted);
+}
+
+.status.error {
+  background-color: var(--color-error-bg);
+  color: var(--color-error);
+  border: 1px solid var(--color-error-border);
+}
+
+.spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  vertical-align: middle;
+  border: 3px solid var(--color-border);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.retry {
+  display: block;
+  margin: 0 auto;
+}
+
+/* weather card */
+.weather {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: var(--color-surface);
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.weather-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.weather-top img {
+  width: 80px;
+  height: 80px;
+}
+
+.weather-top h2 {
+  margin: 0;
+}
+
+.description {
+  margin: 4px 0 0;
+  color: var(--color-muted);
+  text-transform: capitalize;
+}
+
+.temp {
+  margin: 10px 0 20px;
+  font-size: 56px;
+  font-weight: bold;
+}
+
+.details {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.detail {
+  padding: 10px;
+  background-color: var(--color-bg);
+  border-radius: var(--radius);
+}
+
+.detail span {
+  display: block;
+  font-size: 13px;
+  color: var(--color-muted);
+}
+
+/* tablet */
+@media (max-width: 600px) {
+  .details {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* phone */
+@media (max-width: 420px) {
+  .search {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .temp {
+    font-size: 44px;
+  }
+}
